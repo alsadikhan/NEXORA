@@ -1,0 +1,12 @@
+export { default as ColorPicker } from './ColorPicker';
+export { default as BasicInfoStep } from './BasicInfoStep';
+export { default as ProductDetailsStep } from './ProductDetailsStep';
+export { default as PricingStep } from './PricingStep';
+export { default as ImagesStep } from './ImagesStep';
+export { default as InventoryStep } from './InventoryStep';
+export { default as VariantsStep } from './VariantsStep';
+export { default as SEOStep } from './SEOStep';
+export { default as PreviewStep } from './PreviewStep';
+export { default as ProductFormLayout } from './ProductFormLayout';
+export { default as ProductLivePreview } from './ProductLivePreview';
+export { default as ProductMetaInputs } from './ProductMetaInputs'; 
