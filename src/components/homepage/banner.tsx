@@ -15,7 +15,7 @@ const bannerData = [
     description:
       'Step into a new era of fashion with our debut collection — where comfort meets sophistication.',
     image:
-      'https://res.cloudinary.com/dfijxvhfl/image/upload/v1748990601/launching-banner_olu7gb.png',
+      'https://res.cloudinary.com/wwgagxnb/image/upload/f_auto,q_auto/Sky_Blue_New_Brand_Launch',
     cta: 'Explore Now',
   },
   {
