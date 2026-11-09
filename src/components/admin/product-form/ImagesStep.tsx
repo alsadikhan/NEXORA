@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { X, Plus } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -60,13 +61,12 @@ const ImagesStep = ({
         <div className="border rounded-md p-4 mt-2">
           <div className="text-sm font-medium mb-2">Preview:</div>
           <div className="aspect-square w-40 h-40 rounded-md overflow-hidden bg-gray-100">
-            <img 
-              src={formState.mainImage} 
-              alt="Main product image" 
+            <Image
+              src={formState.mainImage}
+              alt="Main product image"
+              width={400}
+              height={400}
               className="h-full w-full object-cover"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = 'https://placehold.co/400x400?text=Image+Error';
-              }}
             />
           </div>
         </div>
@@ -103,13 +103,12 @@ const ImagesStep = ({
             {formState.additionalImages.map((image: string, index: number) => (
               <div key={index} className="relative group">
                 <div className="aspect-square w-24 h-24 rounded-md overflow-hidden bg-gray-100">
-                  <img 
-                    src={image} 
-                    alt={`Additional product image ${index + 1}`} 
+                  <Image
+                    src={image}
+                    alt={`Additional product image ${index + 1}`}
+                    width={400}
+                    height={400}
                     className="h-full w-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://placehold.co/400x400?text=Image+Error';
-                    }}
                   />
                 </div>
                 <button

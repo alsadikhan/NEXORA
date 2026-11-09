@@ -4,10 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ProductPreview } from '@/components/admin/product-preview';
-import { ProductFormStep } from '@/hooks/use-product-form';
+import { ProductFormStep, ProductFormState } from '@/hooks/use-product-form';
+import { ColorVariant } from '@/types/product';
 
 interface ReviewStepProps {
-  formState: any;
+  formState: ProductFormState;
   currentStep: ProductFormStep;
   isSubmitting: boolean;
   goToPreviousStep: () => void;
@@ -19,6 +20,8 @@ const ReviewStep = ({
   isSubmitting,
   goToPreviousStep,
 }: ReviewStepProps) => {
+  void currentStep;
+
   return (
     <div className="space-y-8">
       <Card>
@@ -73,7 +76,7 @@ const ReviewStep = ({
               <div className="space-y-2">
                 <div className="font-medium">Colors:</div>
                 <div className="flex flex-wrap gap-2">
-                  {formState.colorVariants.map((variant: any, index: number) => (
+                  {formState.colorVariants.map((variant: ColorVariant, index: number) => (
                     <div 
                       key={index} 
                       className="flex items-center gap-2 border rounded-md px-3 py-1"

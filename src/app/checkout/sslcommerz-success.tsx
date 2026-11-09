@@ -3,40 +3,65 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { CheckCircle, ArrowLeft, Home, ShoppingBag } from 'lucide-react';
+import { CheckCircle, Home, ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function SSLCommerzSuccess() {
   const searchParams = useSearchParams();
-  const [paymentDetails, setPaymentDetails] = useState<any>(null);
+  const [paymentDetails, setPaymentDetails] = useState<{ tran_id: string | null; status: string | null; val_id: string | null; amount: string | null; currency: string | null; card_type: string | null; card_no: string | null; bank_tran_id: string | null; store_amount: string | null; card_issuer: string | null; card_brand: string | null; card_issuer_country: string | null; card_issuer_country_code: string | null; currency_type: string | null; currency_amount: string | null; currency_rate: string | null; base_fair: string | null; value_a: string | null; value_b: string | null; value_c: string | null; value_d: string | null; risk_title: string | null; risk_level: string | null; date: string } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Extract payment details from URL parameters
-    const details = {
-      tran_id: searchParams?.get('tran_id'),
-      status: searchParams?.get('status'),
-      val_id: searchParams?.get('val_id'),
-      amount: searchParams?.get('amount'),
-      currency: searchParams?.get('currency'),
-      card_type: searchParams?.get('card_type'),
-      card_no: searchParams?.get('card_no'),
-      bank_tran_id: searchParams?.get('bank_tran_id'),
-      store_amount: searchParams?.get('store_amount'),
-      card_issuer: searchParams?.get('card_issuer'),
-      card_brand: searchParams?.get('card_brand'),
-      card_issuer_country: searchParams?.get('card_issuer_country'),
-      card_issuer_country_code: searchParams?.get('card_issuer_country_code'),
-      currency_type: searchParams?.get('currency_type'),
-      currency_amount: searchParams?.get('currency_amount'),
-      currency_rate: searchParams?.get('currency_rate'),
-      base_fair: searchParams?.get('base_fair'),
-      value_a: searchParams?.get('value_a'),
-      value_b: searchParams?.get('value_b'),
-      value_c: searchParams?.get('value_c'),
-      value_d: searchParams?.get('value_d'),
-      risk_title: searchParams?.get('risk_title'),
-      risk_level: searchParams?.get('risk_level'),
+    const details: {
+      tran_id: string | null;
+      status: string | null;
+      val_id: string | null;
+      amount: string | null;
+      currency: string | null;
+      card_type: string | null;
+      card_no: string | null;
+      bank_tran_id: string | null;
+      store_amount: string | null;
+      card_issuer: string | null;
+      card_brand: string | null;
+      card_issuer_country: string | null;
+      card_issuer_country_code: string | null;
+      currency_type: string | null;
+      currency_amount: string | null;
+      currency_rate: string | null;
+      base_fair: string | null;
+      value_a: string | null;
+      value_b: string | null;
+      value_c: string | null;
+      value_d: string | null;
+      risk_title: string | null;
+      risk_level: string | null;
+      date: string;
+    } = {
+      tran_id: searchParams?.get('tran_id') ?? null,
+      status: searchParams?.get('status') ?? null,
+      val_id: searchParams?.get('val_id') ?? null,
+      amount: searchParams?.get('amount') ?? null,
+      currency: searchParams?.get('currency') ?? null,
+      card_type: searchParams?.get('card_type') ?? null,
+      card_no: searchParams?.get('card_no') ?? null,
+      bank_tran_id: searchParams?.get('bank_tran_id') ?? null,
+      store_amount: searchParams?.get('store_amount') ?? null,
+      card_issuer: searchParams?.get('card_issuer') ?? null,
+      card_brand: searchParams?.get('card_brand') ?? null,
+      card_issuer_country: searchParams?.get('card_issuer_country') ?? null,
+      card_issuer_country_code: searchParams?.get('card_issuer_country_code') ?? null,
+      currency_type: searchParams?.get('currency_type') ?? null,
+      currency_amount: searchParams?.get('currency_amount') ?? null,
+      currency_rate: searchParams?.get('currency_rate') ?? null,
+      base_fair: searchParams?.get('base_fair') ?? null,
+      value_a: searchParams?.get('value_a') ?? null,
+      value_b: searchParams?.get('value_b') ?? null,
+      value_c: searchParams?.get('value_c') ?? null,
+      value_d: searchParams?.get('value_d') ?? null,
+      risk_title: searchParams?.get('risk_title') ?? null,
+      risk_level: searchParams?.get('risk_level') ?? null,
       date: new Date().toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',

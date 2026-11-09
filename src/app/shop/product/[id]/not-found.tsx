@@ -11,7 +11,7 @@ export default function ProductNotFound() {
         </div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Product Not Found</h1>
         <p className="text-gray-600 mb-8">
-          We couldn't find the product you're looking for. It may have been removed or is no longer available.
+          We couldn&apos;t find the product you&apos;re looking for. It may have been removed or is no longer available.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild className="bg-black hover:bg-gray-800 text-white">

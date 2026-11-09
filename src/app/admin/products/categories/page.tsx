@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { 
   ArrowLeft, 
@@ -438,9 +439,11 @@ export default function CategoriesPage() {
                               )}
                               {category.image ? (
                                 <div className="h-8 w-8 rounded-md overflow-hidden bg-gray-100">
-                                  <img 
-                                    src={category.image} 
-                                    alt={category.name} 
+                                  <Image
+                                    src={category.image}
+                                    alt={category.name}
+                                    width={32}
+                                    height={32}
                                     className="h-full w-full object-cover"
                                   />
                                 </div>
@@ -584,9 +587,11 @@ export default function CategoriesPage() {
                               <div className="flex items-center gap-3 ml-6">
                                 {subCategory.image ? (
                                   <div className="h-7 w-7 rounded-md overflow-hidden bg-gray-100">
-                                    <img 
-                                      src={subCategory.image} 
-                                      alt={subCategory.name} 
+                                    <Image
+                                      src={subCategory.image}
+                                      alt={subCategory.name}
+                                      width={28}
+                                      height={28}
                                       className="h-full w-full object-cover"
                                     />
                                   </div>

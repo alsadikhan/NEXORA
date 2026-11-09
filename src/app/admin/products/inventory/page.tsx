@@ -1,12 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { 
   ArrowLeft, 
   Search, 
-  Filter, 
-  ArrowUpDown, 
   MoreHorizontal, 
   Edit, 
   AlertTriangle,
@@ -404,9 +403,11 @@ export default function InventoryPage() {
                       <TableCell>
                         <div className="flex items-center gap-3">
                           <div className="h-10 w-10 rounded-md overflow-hidden bg-gray-100">
-                            <img 
-                              src={product.image} 
-                              alt={product.name} 
+                            <Image
+                              src={product.image}
+                              alt={product.name}
+                              width={40}
+                              height={40}
                               className="h-full w-full object-cover"
                             />
                           </div>

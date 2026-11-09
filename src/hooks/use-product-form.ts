@@ -458,7 +458,7 @@ export function useProductForm() {
       
       toast.success('Product created successfully!');
       router.push('/admin/products');
-    } catch (error) {
+    } catch {
       toast.error('Failed to create product. Please try again.');
     } finally {
       setIsSubmitting(false);

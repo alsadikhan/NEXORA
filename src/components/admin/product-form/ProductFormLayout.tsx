@@ -25,6 +25,8 @@ const ProductFormLayout = ({
   isFirstStep = false,
   isLastStep = false,
 }: ProductFormLayoutProps) => {
+  void currentStep;
+
   return (
     <Card>
       <CardHeader>

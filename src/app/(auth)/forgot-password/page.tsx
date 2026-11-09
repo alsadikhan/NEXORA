@@ -49,8 +49,8 @@ function ForgotPasswordForm() {
         </h2>
         <p className="text-gray-600">
           {isSubmitted 
-            ? "We've sent you an email with reset instructions" 
-            : "Enter your email and we'll send you a link to reset your password"}
+            ? "We&apos;ve sent you an email with reset instructions" 
+            : "Enter your email and we&apos;ll send you a link to reset your password"}
         </p>
       </div>
 
@@ -68,10 +68,10 @@ function ForgotPasswordForm() {
             </div>
             <h3 className="text-lg font-medium text-green-800 mb-1">Check your email</h3>
             <p className="text-green-600">
-              We've sent a password reset link to <strong>{email}</strong>
+              We&apos;ve sent a password reset link to <strong>{email}</strong>
             </p>
             <p className="text-sm text-green-500 mt-2">
-              Didn't receive the email? Check your spam folder or request another link.
+              Didn&apos;t receive the email? Check your spam folder or request another link.
             </p>
           </div>
           
@@ -206,7 +206,7 @@ export default function ForgotPasswordPage() {
           <div className="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
           <div className="absolute inset-0 flex items-center justify-center p-8">
             <div className="max-w-md text-center text-white">
-              <h2 className="text-3xl font-bold mb-4">We've Got You Covered</h2>
+              <h2 className="text-3xl font-bold mb-4">We&apos;ve Got You Covered</h2>
               <p className="text-lg text-white/80">
                 Reset your password and get back to shopping your favorite styles.
               </p>

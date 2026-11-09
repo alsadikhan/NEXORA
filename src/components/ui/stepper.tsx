@@ -25,6 +25,8 @@ export function Stepper({
   allowClickNavigation = true,
   completedSteps = [],
 }: StepperProps) {
+  void orientation;
+
   const isStepComplete = (stepId: string) => completedSteps.includes(stepId);
   const isStepActive = (stepId: string) => stepId === activeStep;
   const isStepAccessible = (index: number) => {

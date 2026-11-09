@@ -1,12 +1,11 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { CheckoutState, CardInfo, PaymentMethod, ValidationError } from '@/types/checkout';
+import { CheckoutState, CardInfo, ValidationError } from '@/types/checkout';
 import { paymentProviders } from '@/data/checkout';
-import { AlertCircle, ArrowLeft, CreditCard, Calendar, User, Lock } from 'lucide-react';
-import Image from 'next/image';
+import { AlertCircle, ArrowLeft } from 'lucide-react';
 
 interface PaymentStepProps {
   checkout: CheckoutState;
@@ -25,68 +24,12 @@ export default function PaymentStep({
   validationErrors,
   setValidationErrors
 }: PaymentStepProps) {
-  const [cardInfo, setCardInfo] = useState<CardInfo>(checkout.cardInfo || {
+  const [cardInfo] = useState<CardInfo>(checkout.cardInfo || {
     cardNumber: '',
     cardholderName: '',
     expiryDate: '',
     cvv: ''
   });
-  
-  const handleCardInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    
-    // Format card number with spaces
-    if (name === 'cardNumber') {
-      const formattedValue = value
-        .replace(/\s/g, '')
-        .replace(/\D/g, '')
-        .replace(/(.{4})/g, '$1 ')
-        .trim()
-        .slice(0, 19);
-        
-      setCardInfo(prev => ({
-        ...prev,
-        [name]: formattedValue
-      }));
-      return;
-    }
-    
-    // Format expiry date with slash
-    if (name === 'expiryDate') {
-      const cleaned = value.replace(/\D/g, '');
-      let formattedValue = cleaned;
-      
-      if (cleaned.length > 2) {
-        formattedValue = `${cleaned.slice(0, 2)}/${cleaned.slice(2, 4)}`;
-      }
-      
-      setCardInfo(prev => ({
-        ...prev,
-        [name]: formattedValue
-      }));
-      return;
-    }
-    
-    // Format CVV (numbers only, max 4 digits)
-    if (name === 'cvv') {
-      const formattedValue = value.replace(/\D/g, '').slice(0, 4);
-      
-      setCardInfo(prev => ({
-        ...prev,
-        [name]: formattedValue
-      }));
-      return;
-    }
-    
-    setCardInfo(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-  
-  const handleSelectPaymentMethod = (method: PaymentMethod) => {
-    onChange({ paymentMethod: method });
-  };
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -152,31 +95,9 @@ export default function PaymentStep({
     onContinue();
   };
   
-  const getErrorMessage = (field: string): string | undefined => {
-    const error = validationErrors.find(err => err.field === field);
-    return error?.message;
-  };
-  
   // Show all payment methods
   const availablePaymentProviders = paymentProviders;
-  
-  // Helper to get placeholder image for payment methods without proper icons
-  const getPaymentMethodIcon = (methodId: PaymentMethod) => {
-    const iconMap: Record<PaymentMethod, string> = {
-      credit_card: '/credit-card-icon.svg',
-      debit_card: '/debit-card-icon.svg',
-      bkash: 'https://res.cloudinary.com/dfijxvhfl/image/upload/v1748995000/bkash_mj7xio.png',
-      nagad: 'https://res.cloudinary.com/dfijxvhfl/image/upload/v1748995000/nagad_jngxpr.png',
-      cash_on_delivery: '/cod-icon.svg',
-      paypal: '/paypal-icon.svg',
-      apple_pay: '/apple-pay-icon.svg',
-      google_pay: '/google-pay-icon.svg',
-      sslcommerz: '/images/payment/sslcommerz.svg',
-    };
-    
-    return iconMap[methodId] || '/credit-card-icon.svg';
-  };
-  
+
   return (
     <div className="p-4 sm:p-6 md:p-8">
       <h2 className="text-xl font-semibold text-gray-900 mb-6">Payment Method</h2>
@@ -219,7 +140,7 @@ export default function PaymentStep({
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-8 w-12 relative flex items-center justify-center bg-gray-100 rounded overflow-hidden">
-                      <img src={provider.icon} alt={provider.name} width={48} height={32} className="object-contain" />
+                      <Image src={provider.icon} alt={provider.name} width={48} height={32} className="object-contain" />
                     </div>
                     <span className="font-medium text-gray-900">{provider.name}</span>
                   </div>

@@ -45,11 +45,21 @@ export const mockLoginApi = async (email: string, password: string): Promise<{su
   };
 };
 
+type SignupPayload = {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+  name?: string;
+};
+
 // Mock function to simulate an API signup request
-export const mockSignupApi = async (userData: any): Promise<{success: boolean, token?: string, error?: string}> => {
+export const mockSignupApi = async (_userData: SignupPayload): Promise<{success: boolean, token?: string, error?: string}> => {
+  void _userData;
+
   // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 1500));
-  
+
   // In a real app, this would validate and create a user
   return {
     success: true,
@@ -58,26 +68,32 @@ export const mockSignupApi = async (userData: any): Promise<{success: boolean, t
 };
 
 // Mock function to simulate an API password reset request
-export const mockResetPasswordApi = async (email: string): Promise<{success: boolean, error?: string}> => {
+export const mockResetPasswordApi = async (_email: string): Promise<{success: boolean, error?: string}> => {
+  void _email;
+
   // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 1000));
-  
+
   // Always return success for demo purposes
   return {
     success: true
   };
 };
 
+interface AuthRouter {
+  push: (path: string) => void;
+}
+
 // For protected routes - use in useEffect
-export const requireAuth = (router: any): boolean => {
+export const requireAuth = (router: AuthRouter): boolean => {
   if (typeof window === 'undefined') return false;
-  
+
   const token = localStorage.getItem('user-token');
-  
+
   if (!token) {
     router.push('/login');
     return false;
   }
-  
+
   return true;
 }; 

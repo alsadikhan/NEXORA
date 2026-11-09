@@ -1,19 +1,16 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { 
   Plus, 
   Search, 
-  Filter, 
-  ArrowUpDown, 
   MoreHorizontal, 
   Edit, 
   Trash2, 
   Copy, 
-  Eye, 
-  Check, 
-  X 
+  Eye 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -227,7 +224,7 @@ const formatCurrency = (amount: number) => {
 };
 
 export default function ProductsPage() {
-  const [products, setProducts] = useState<ProductInventory[]>(mockProducts);
+  const [products] = useState<ProductInventory[]>(mockProducts);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
@@ -430,9 +427,11 @@ export default function ProductsPage() {
                       </TableCell>
                       <TableCell>
                         <div className="h-10 w-10 rounded-md overflow-hidden bg-gray-100">
-                          <img 
-                            src={product.image} 
-                            alt={product.name} 
+                          <Image
+                            src={product.image}
+                            alt={product.name}
+                            width={40}
+                            height={40}
                             className="h-full w-full object-cover"
                           />
                         </div>

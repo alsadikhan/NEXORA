@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { CheckCircle, Download, Home, ShoppingBag, Truck, ArrowRight, Calendar } from 'lucide-react';
+import { CheckCircle, Download, ShoppingBag, Truck, Calendar, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CheckoutState } from '@/types/checkout';
 import Image from 'next/image';

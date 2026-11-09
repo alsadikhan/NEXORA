@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { 
   ArrowUpRight, 
@@ -11,7 +12,6 @@ import {
   Users, 
   AlertTriangle,
   ArrowRight,
-  Eye
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -244,7 +244,7 @@ const getPaymentStatusColor = (status: Order['paymentStatus']) => {
 
 export default function AdminDashboard() {
   const [timeRange, setTimeRange] = useState<'today' | 'week' | 'month' | 'year'>('week');
-  
+
   // In a real app, you would fetch data based on the selected time range
   const stats = mockStats;
   
@@ -256,7 +256,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Time range selector */}
-      <Tabs defaultValue="week" className="w-full" onValueChange={(value) => setTimeRange(value as any)}>
+      <Tabs value={timeRange} className="w-full" onValueChange={(value) => setTimeRange(value as 'today' | 'week' | 'month' | 'year')}>
         <div className="flex justify-between items-center">
           <TabsList>
             <TabsTrigger value="today">Today</TabsTrigger>
@@ -380,9 +380,11 @@ export default function AdminDashboard() {
                 {stats.topSellingProducts.map((product) => (
                   <div key={product.id} className="flex items-center gap-4">
                     <div className="h-12 w-12 rounded-md overflow-hidden bg-gray-100">
-                      <img 
-                        src={product.image} 
-                        alt={product.name} 
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        width={48}
+                        height={48}
                         className="h-full w-full object-cover"
                       />
                     </div>
@@ -465,17 +467,17 @@ export default function AdminDashboard() {
         {/* Placeholder for other time ranges */}
         <TabsContent value="today">
           <div className="py-10 text-center text-gray-500">
-            Today's data would be displayed here
+            Today&apos;s data would be displayed here
           </div>
         </TabsContent>
         <TabsContent value="month">
           <div className="py-10 text-center text-gray-500">
-            This month's data would be displayed here
+            This month&apos;s data would be displayed here
           </div>
         </TabsContent>
         <TabsContent value="year">
           <div className="py-10 text-center text-gray-500">
-            This year's data would be displayed here
+            This year&apos;s data would be displayed here
           </div>
         </TabsContent>
       </Tabs>

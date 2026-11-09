@@ -127,7 +127,9 @@ export const validatePostalCode = (postalCode: string): boolean => {
 };
 
 // Mock API function to place an order
-export const placeOrder = async (checkoutState: CheckoutState): Promise<{ success: boolean; orderId?: string; error?: string }> => {
+export const placeOrder = async (_checkoutState: CheckoutState): Promise<{ success: boolean; orderId?: string; error?: string }> => {
+  void _checkoutState;
+
   // Simulate API call
   return new Promise((resolve) => {
     setTimeout(() => {

@@ -9,7 +9,6 @@ import {
   Package, 
   ShoppingBag, 
   Users, 
-  Tag, 
   Settings, 
   LogOut, 
   ChevronDown, 

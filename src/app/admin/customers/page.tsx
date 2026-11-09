@@ -10,7 +10,6 @@ import {
   Edit, 
   Trash2, 
   Mail, 
-  Calendar, 
   ArrowDownToLine,
   CheckCircle,
   XCircle
@@ -206,7 +205,7 @@ const getTimeSince = (dateString: string | undefined) => {
 };
 
 export default function CustomersPage() {
-  const [customers, setCustomers] = useState<User[]>(mockCustomers);
+  const [customers] = useState<User[]>(mockCustomers);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRole, setSelectedRole] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');

@@ -8,16 +8,16 @@ import { Button } from '@/components/ui/button';
 
 export default function SSLCommerzCancel() {
   const searchParams = useSearchParams();
-  const [cancelDetails, setCancelDetails] = useState<any>(null);
+  const [cancelDetails, setCancelDetails] = useState<{ tran_id: string | null; status: string | null; amount: string | null; currency: string | null; date: string } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Extract cancellation details from URL parameters
-    const details = {
-      tran_id: searchParams?.get('tran_id'),
-      status: searchParams?.get('status'),
-      amount: searchParams?.get('amount'),
-      currency: searchParams?.get('currency'),
+    const details: { tran_id: string | null; status: string | null; amount: string | null; currency: string | null; date: string } = {
+      tran_id: searchParams?.get('tran_id') ?? null,
+      status: searchParams?.get('status') ?? null,
+      amount: searchParams?.get('amount') ?? null,
+      currency: searchParams?.get('currency') ?? null,
       date: new Date().toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',

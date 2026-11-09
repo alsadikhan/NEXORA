@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Eye, EyeOff, Mail, Lock, ArrowLeft } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { mockLoginApi, login } from '@/lib/auth';
 
 // Separate component to handle search params
@@ -19,7 +19,6 @@ function LoginForm() {
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   
-  const router = useRouter();
   const searchParams = useSearchParams();
   
   useEffect(() => {
@@ -217,7 +216,7 @@ function LoginForm() {
 
         <div className="text-center mt-4">
           <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <Link href="/signup" className="font-semibold text-black hover:underline">
               Sign up
             </Link>

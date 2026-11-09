@@ -44,7 +44,7 @@ export const useAddToCart = () => {
       toast.success(`${name} added to cart`, {
         description: `${quantity} × ৳${price.toLocaleString()}`,
       });
-    } catch (error) {
+    } catch {
       toast.error('Failed to add to cart');
     } finally {
       setIsLoading(false);
@@ -65,7 +65,7 @@ export const useRemoveFromCart = () => {
       toast.success(`${name} removed from cart`, {
         description: "Item successfully removed"
       });
-    } catch (error) {
+    } catch {
       toast.error('Failed to remove from cart');
     } finally {
       setIsLoading(false);

@@ -7,6 +7,7 @@ import { Switch } from '@/components/ui/switch';
 import { ProductFormLayout } from './index';
 import { ColorPicker } from './index';
 import { ProductFormStep, ProductFormState } from '@/hooks/use-product-form';
+import { ColorVariant } from '@/types/product';
 
 interface VariantsStepProps {
   formState: ProductFormState;
@@ -111,7 +112,7 @@ const VariantsStep = ({
               <div className="mt-4">
                 <Label>Added Color Variants:</Label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-                  {formState.colorVariants.map((variant: any, index: number) => (
+                  {formState.colorVariants.map((variant: ColorVariant, index: number) => (
                     <div key={index} className="flex items-center gap-3 border rounded-md p-3">
                       <div 
                         className="w-6 h-6 rounded-full border" 

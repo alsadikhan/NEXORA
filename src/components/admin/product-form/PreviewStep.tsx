@@ -18,13 +18,10 @@ interface PreviewStepProps {
 
 const PreviewStep = ({
   formState,
-  updateFormField,
   currentStep,
   isSubmitting,
   goToNextStep,
   goToPreviousStep,
-  handleAddTag,
-  handleRemoveTag,
 }: PreviewStepProps) => {
   return (
     <div className="space-y-8">

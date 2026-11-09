@@ -8,17 +8,17 @@ import { Button } from '@/components/ui/button';
 
 export default function SSLCommerzFail() {
   const searchParams = useSearchParams();
-  const [errorDetails, setErrorDetails] = useState<any>(null);
+  const [errorDetails, setErrorDetails] = useState<{ tran_id: string | null; status: string | null; error: string | null; amount: string | null; currency: string | null; date: string } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Extract error details from URL parameters
-    const details = {
-      tran_id: searchParams?.get('tran_id'),
-      status: searchParams?.get('status'),
-      error: searchParams?.get('error'),
-      amount: searchParams?.get('amount'),
-      currency: searchParams?.get('currency'),
+    const details: { tran_id: string | null; status: string | null; error: string | null; amount: string | null; currency: string | null; date: string } = {
+      tran_id: searchParams?.get('tran_id') ?? null,
+      status: searchParams?.get('status') ?? null,
+      error: searchParams?.get('error') ?? null,
+      amount: searchParams?.get('amount') ?? null,
+      currency: searchParams?.get('currency') ?? null,
       date: new Date().toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
@@ -58,7 +58,7 @@ export default function SSLCommerzFail() {
           </h1>
           
           <p className="text-gray-600 text-lg">
-            We're sorry, but your payment could not be processed. Please try again.
+            We&apos;re sorry, but your payment could not be processed. Please try again.
           </p>
         </div>
 

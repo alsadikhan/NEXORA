@@ -159,9 +159,14 @@ export default function CheckoutPage() {
             { field: 'payment', message: response.data.message || 'Failed to initiate payment with SSLCommerz.' }
           ]);
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
+        const err = error as {
+          response?: { data?: { message?: string } };
+          message?: string;
+        };
+
         setValidationErrors([
-          { field: 'system', message: error?.response?.data?.message || error?.message || 'Failed to connect to SSLCommerz.' }
+          { field: 'system', message: err.response?.data?.message || err.message || 'Failed to connect to SSLCommerz.' }
         ]);
       } finally {
         setIsProcessingOrder(false);
@@ -179,7 +184,7 @@ export default function CheckoutPage() {
           { field: 'payment', message: result.error || 'An error occurred while processing your order' }
         ]);
       }
-    } catch (error) {
+    } catch {
       setValidationErrors([
         { field: 'system', message: 'An unexpected error occurred. Please try again.' }
       ]);

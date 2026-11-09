@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { 
   Search, 
-  Filter, 
   MoreHorizontal, 
   Eye, 
   FileText, 
@@ -345,7 +344,7 @@ const getPaymentStatusBadge = (status: PaymentStatus) => {
 };
 
 export default function OrdersPage() {
-  const [orders, setOrders] = useState<Order[]>(mockOrders);
+  const [orders] = useState<Order[]>(mockOrders);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
   const [selectedPaymentStatus, setSelectedPaymentStatus] = useState<string>('all');

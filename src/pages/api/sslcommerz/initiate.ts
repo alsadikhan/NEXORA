@@ -50,7 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     };
 
     const missingFields = Object.entries(requiredFields)
-      .filter(([key, value]) => !value || value.toString().trim() === '')
+      .filter(([, value]) => !value || value.toString().trim() === '')
       .map(([key]) => key);
 
     if (missingFields.length > 0) {
@@ -133,19 +133,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ...response.data
       });
     }
-  } catch (error: any) {
-    console.error('SSLCommerz API Error:', error.response?.data || error.message);
+  } catch (error: unknown) {
+    const err = error as {
+      response?: {
+        data?: { errorMessage?: string; status?: string };
+        status?: number;
+        statusText?: string;
+      };
+      message?: string;
+    };
+
+    console.error('SSLCommerz API Error:', err.response?.data || err.message);
     console.error('Error Details:', {
-      status: error.response?.status,
-      statusText: error.response?.statusText,
-      data: error.response?.data,
-      message: error.message
+      status: err.response?.status,
+      statusText: err.response?.statusText,
+      data: err.response?.data,
+      message: err.message
     });
-    
+
     res.status(500).json({
       success: false,
-      message: error.response?.data?.errorMessage || error.response?.data?.status || error.message || 'Failed to connect to SSLCommerz',
-      error: error.response?.data || error.message
+      message: err.response?.data?.errorMessage || err.response?.data?.status || err.message || 'Failed to connect to SSLCommerz',
+      error: err.response?.data || err.message
     });
   }
 } 

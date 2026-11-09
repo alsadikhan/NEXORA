@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check, X } from "lucide-react";
@@ -161,13 +162,12 @@ export function ProductReview({ product }: ProductReviewProps) {
               <h3 className="text-lg font-medium">Images</h3>
               <div className="space-y-2">
                 <div className="h-40 w-40 rounded-md overflow-hidden bg-gray-100">
-                  <img 
-                    src={product.mainImage} 
-                    alt="Main product image" 
+                  <Image
+                    src={product.mainImage}
+                    alt="Main product image"
+                    width={400}
+                    height={400}
                     className="h-full w-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://placehold.co/400x400?text=Image+Error';
-                    }}
                   />
                 </div>
                 
@@ -175,13 +175,12 @@ export function ProductReview({ product }: ProductReviewProps) {
                   <div className="grid grid-cols-3 gap-2 mt-2">
                     {product.additionalImages.slice(0, 3).map((image, index) => (
                       <div key={index} className="h-16 w-16 rounded-md overflow-hidden bg-gray-100">
-                        <img 
-                          src={image} 
-                          alt={`Additional product image ${index + 1}`} 
+                        <Image
+                          src={image}
+                          alt={`Additional product image ${index + 1}`}
+                          width={400}
+                          height={400}
                           className="h-full w-full object-cover"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src = 'https://placehold.co/400x400?text=Image+Error';
-                          }}
                         />
                       </div>
                     ))}

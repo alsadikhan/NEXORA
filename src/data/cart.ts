@@ -1,5 +1,4 @@
 import { CartItem, CartState, ShippingOption, CouponInfo } from '@/types/cart';
-import { dummyProducts } from './products';
 
 // Sample cart items based on products from our catalog
 export const dummyCartItems: CartItem[] = [

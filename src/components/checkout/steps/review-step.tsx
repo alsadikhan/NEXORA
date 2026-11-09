@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { CheckoutState, ValidationError } from '@/types/checkout';
-import { AlertCircle, ArrowLeft, Check, CreditCard, MapPin, Truck, User, ShoppingBag } from 'lucide-react';
+import { AlertCircle, ArrowLeft, CreditCard, MapPin, Truck, ShoppingBag } from 'lucide-react';
 import Image from 'next/image';
 import { Dialog, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { useState } from 'react';

@@ -3,7 +3,6 @@
 import { usePathname } from "next/navigation";
 import Header from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import ShopHeaderManager from "@/components/shop/shop-header-manager";
 import { Toaster } from "sonner";
 
 export default function MainLayoutClient({

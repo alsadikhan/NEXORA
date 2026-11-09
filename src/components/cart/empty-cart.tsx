@@ -1,8 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
-import { ShoppingBag, ArrowRight, ShoppingCart, ArrowLeft, Home } from 'lucide-react';
+import { ArrowRight, ShoppingCart, ArrowLeft, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/ui/product-card';
 import { dummyProducts } from '@/data/products';
@@ -47,7 +46,7 @@ export default function EmptyCart() {
           
           <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-2 sm:mb-3">Your cart is empty</h2>
           <p className="text-gray-600 max-w-md mb-8 sm:mb-10 text-sm sm:text-base">
-            Looks like you haven't added anything to your cart yet. Browse our collection to find something you'll love.
+            Looks like you haven&apos;t added anything to your cart yet. Browse our collection to find something you&apos;ll love.
           </p>
           
           {/* Product suggestions */}

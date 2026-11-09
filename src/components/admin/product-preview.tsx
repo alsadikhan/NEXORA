@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ColorVariant, Product } from "@/types/product";
 import { StarIcon } from "lucide-react";
@@ -64,13 +64,12 @@ export function ProductPreview({ product }: ProductPreviewProps) {
         {/* Product Gallery */}
         <div className="space-y-4">
           <div className="aspect-square overflow-hidden rounded-lg bg-gray-100 border">
-            <img 
-              src={product.mainImage} 
-              alt={product.name} 
+            <Image
+              src={product.mainImage}
+              alt={product.name}
+              width={600}
+              height={600}
               className="h-full w-full object-cover object-center"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = 'https://placehold.co/600x600?text=Image+Error';
-              }}
             />
           </div>
           
@@ -78,13 +77,12 @@ export function ProductPreview({ product }: ProductPreviewProps) {
             <div className="grid grid-cols-4 gap-2">
               {product.additionalImages.map((image, index) => (
                 <div key={index} className="aspect-square overflow-hidden rounded-lg bg-gray-100 border">
-                  <img 
-                    src={image} 
-                    alt={`${product.name} - Image ${index + 2}`} 
+                  <Image
+                    src={image}
+                    alt={`${product.name} - Image ${index + 2}`}
+                    width={300}
+                    height={300}
                     className="h-full w-full object-cover object-center"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://placehold.co/300x300?text=Image+Error';
-                    }}
                   />
                 </div>
               ))}

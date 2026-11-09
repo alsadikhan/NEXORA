@@ -1,7 +1,7 @@
 'use client';
 
 import { CheckoutStep } from '@/types/checkout';
-import { CheckCircle2, Circle } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
 interface CheckoutProgressProps {
   currentStep: CheckoutStep;
