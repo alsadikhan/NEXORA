@@ -179,7 +179,7 @@ export const dummyProducts: Product[] = [
     sizes: ['S', 'M', 'L', 'XL'],
     metaTitle: 'Slim Fit Polo Shirt - Modern Style | NEXORA Fashion',
     metaDescription: 'Discover our slim fit polo shirt with premium piqué cotton fabric. Perfect for casual and smart-casual occasions with a modern, tailored fit.',
-    urlSlug: 'slim-fit-polo-shirt',
+    urlSlug: 'slim-fit-polo',
     bulkPricing: [
       { minQuantity: 3, maxQuantity: 5, price: 650 },
       { minQuantity: 6, maxQuantity: 10, price: 600 },
