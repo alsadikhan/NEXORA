@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ArrowLeft, Save } from 'lucide-react';
 import { requireAuth } from '@/lib/auth';
+import { useSession } from 'next-auth/react';
 
 export default function AccountSettingsPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,10 +24,13 @@ export default function AccountSettingsPage() {
   });
   
   const router = useRouter();
+  const { status: sessionStatus } = useSession();
 
   useEffect(() => {
+    if (sessionStatus === 'loading') return;
+
     // Check if user is authenticated
-    const isAuthenticated = requireAuth(router);
+    const isAuthenticated = requireAuth(router, sessionStatus === 'authenticated');
     
     if (isAuthenticated) {
       setIsAuthenticated(true);
@@ -45,7 +49,7 @@ export default function AccountSettingsPage() {
         setIsLoading(false);
       }, 800);
     }
-  }, [router]);
+  }, [router, sessionStatus]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;

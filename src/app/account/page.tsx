@@ -5,21 +5,25 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { User, Package, Heart, Settings, LogOut } from 'lucide-react';
 import { requireAuth, logout } from '@/lib/auth';
+import { useSession } from 'next-auth/react';
 
 export default function AccountPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
+  const { status: sessionStatus } = useSession();
 
   useEffect(() => {
+    if (sessionStatus === 'loading') return;
+
     // Check if user is authenticated
-    const isAuthenticated = requireAuth(router);
+    const isAuthenticated = requireAuth(router, sessionStatus === 'authenticated');
     
     if (isAuthenticated) {
       setIsAuthenticated(true);
       setIsLoading(false);
     }
-  }, [router]);
+  }, [router, sessionStatus]);
 
   const handleLogout = () => {
     // Use the logout utility

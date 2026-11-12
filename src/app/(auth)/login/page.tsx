@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useSearchParams } from 'next/navigation';
 import { mockLoginApi, login } from '@/lib/auth';
+import { signIn } from 'next-auth/react';
 
 // Separate component to handle search params
 function LoginForm() {
@@ -18,6 +19,9 @@ function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+  const [isGoogleConfigured, setIsGoogleConfigured] = useState(false);
+  const [hasCheckedGoogleConfig, setHasCheckedGoogleConfig] = useState(false);
   
   const searchParams = useSearchParams();
   
@@ -27,7 +31,42 @@ function LoginForm() {
     if (registered === 'true') {
       setSuccessMessage('Account created successfully! Please log in with your credentials.');
     }
+
+    const authError = searchParams?.get('error');
+    if (authError) {
+      setError('Google sign-in failed. Check your OAuth settings and try again.');
+    }
   }, [searchParams]);
+
+  useEffect(() => {
+    let isActive = true;
+
+    const checkGoogleConfiguration = async () => {
+      try {
+        const response = await fetch('/api/auth/providers');
+        if (!response.ok) {
+          throw new Error(`Provider check failed with status ${response.status}`);
+        }
+
+        const providers: Record<string, unknown> = await response.json();
+        if (isActive) {
+          setIsGoogleConfigured(Object.hasOwn(providers, 'google'));
+          setHasCheckedGoogleConfig(true);
+        }
+      } catch (configError) {
+        console.error('Google provider check failed:', configError);
+        if (isActive) {
+          setError('Unable to check Google sign-in configuration. Please try again later.');
+          setHasCheckedGoogleConfig(true);
+        }
+      }
+    };
+
+    void checkGoogleConfiguration();
+    return () => {
+      isActive = false;
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,6 +89,35 @@ function LoginForm() {
       console.error('Login error:', err);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setIsGoogleLoading(true);
+    setError('');
+
+    try {
+      const result = await signIn('google', {
+        callbackUrl: '/',
+        redirect: false,
+      });
+
+      if (result?.error) {
+        setError('Google sign-in failed. Check the OAuth configuration and try again.');
+        return;
+      }
+
+      if (!result?.url) {
+        setError('Google sign-in could not be started. Please try again.');
+        return;
+      }
+
+      window.location.assign(result.url);
+    } catch (signInError) {
+      console.error('Google sign-in error:', signInError);
+      setError('Google sign-in is unavailable. Please try again.');
+    } finally {
+      setIsGoogleLoading(false);
     }
   };
   
@@ -181,7 +249,9 @@ function LoginForm() {
         <div className="grid grid-cols-1 gap-3">
           <button
             type="button"
-            className="flex justify-center items-center py-2.5 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-50 transition-colors"
+            onClick={handleGoogleSignIn}
+            disabled={isGoogleLoading || !isGoogleConfigured}
+            className="flex justify-center items-center py-2.5 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-50 transition-colors disabled:cursor-not-allowed disabled:opacity-60"
           >
             <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24">
               <path
@@ -201,9 +271,14 @@ function LoginForm() {
                 fill="#EA4335"
               />
             </svg>
-            Google
+            {isGoogleLoading ? 'Connecting to Google...' : 'Google'}
           </button>
         </div>
+        {hasCheckedGoogleConfig && !isGoogleConfigured && (
+          <p className="text-center text-xs text-gray-500">
+            Add the Google client secret to your local environment to enable Google sign-in.
+          </p>
+        )}
 
         <div className="text-center mt-4">
           <p className="text-sm text-gray-600">

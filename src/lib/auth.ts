@@ -1,6 +1,7 @@
 /**
  * Auth utilities for managing user authentication
  */
+import { signOut } from 'next-auth/react';
 
 // Helper to check if user is logged in
 export const isLoggedIn = (): boolean => {
@@ -19,11 +20,9 @@ export const login = (token: string, redirectTo: string = '/'): void => {
 };
 
 // Helper to log out user
-export const logout = (redirectTo: string = '/login'): void => {
+export const logout = async (redirectTo: string = '/login'): Promise<void> => {
   localStorage.removeItem('user-token');
-  
-  // Redirect after logout
-  window.location.href = redirectTo;
+  await signOut({ callbackUrl: redirectTo });
 };
 
 // Mock function to simulate an API login request
@@ -85,12 +84,15 @@ interface AuthRouter {
 }
 
 // For protected routes - use in useEffect
-export const requireAuth = (router: AuthRouter): boolean => {
+export const requireAuth = (
+  router: AuthRouter,
+  sessionAuthenticated = false
+): boolean => {
   if (typeof window === 'undefined') return false;
 
   const token = localStorage.getItem('user-token');
 
-  if (!token) {
+  if (!token && !sessionAuthenticated) {
     router.push('/login');
     return false;
   }

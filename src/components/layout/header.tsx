@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { FadeIn } from '@/components/ui/animations/animations';
 import { usePathname } from 'next/navigation';
 import { logout } from '@/lib/auth';
+import { useSession } from 'next-auth/react';
 import {
   Drawer,
   DrawerClose,
@@ -64,6 +65,7 @@ export default function Header() {
   const searchRef = useRef<HTMLDivElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const { status: sessionStatus } = useSession();
 
   useEffect(() => {
     setHasMounted(true);
@@ -71,8 +73,8 @@ export default function Header() {
     // Check if user is logged in (this would typically use your auth system)
     // For demo purposes, we're just checking localStorage
     const token = localStorage.getItem('user-token');
-    setIsLoggedIn(!!token);
-  }, []);
+    setIsLoggedIn(!!token || sessionStatus === 'authenticated');
+  }, [sessionStatus]);
 
   useEffect(() => {
     const handleScroll = () => {

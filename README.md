@@ -109,6 +109,9 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 # Authentication
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your-secret-key
+GOOGLE_CLIENT_ID=your-google-oauth-client-id
+GOOGLE_CLIENT_SECRET=your-google-oauth-client-secret
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=your-google-oauth-client-id
 
 # Database
 DATABASE_URL=your-database-url
@@ -126,6 +129,18 @@ NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your-cloud-name
 CLOUDINARY_API_KEY=your-api-key
 CLOUDINARY_API_SECRET=your-api-secret
 ```
+
+### Google Sign-In Setup
+
+1. In [Google Cloud Console](https://console.cloud.google.com/), create or select a project and configure the OAuth consent screen.
+2. Create an OAuth client ID with application type **Web application**.
+3. Add authorized JavaScript origins for `http://localhost:3000` and your deployed site origin.
+4. Add authorized redirect URIs:
+   - Local: `http://localhost:3000/api/auth/callback/google`
+   - Vercel: `https://nexora-coral-phi.vercel.app/api/auth/callback/google`
+5. Add the client ID to `GOOGLE_CLIENT_ID` and `NEXT_PUBLIC_GOOGLE_CLIENT_ID`, and the client secret to `GOOGLE_CLIENT_SECRET` in `.env.local` and Vercel Environment Variables. Never commit or share the client secret.
+6. Set `NEXTAUTH_URL` to `http://localhost:3000` locally and to your deployed site URL in Vercel. Set `NEXTAUTH_SECRET` to a unique random value in both environments.
+7. Restart the local server or redeploy on Vercel after setting the variables.
 
 ## Project Structure
 
