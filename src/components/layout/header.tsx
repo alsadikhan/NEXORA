@@ -137,9 +137,9 @@ export default function Header() {
         className={`
           fixed top-0 left-0 right-0 z-[100] transition-all duration-300
           ${!hasMounted ? 'bg-transparent' : isScrolled 
-            ? 'bg-[#fbf9f4]/90 backdrop-blur-md shadow-sm border-b border-[#e5dfd3]' 
+            ? 'bg-[#e0f2fe]/90 backdrop-blur-md shadow-sm border-b border-[#bae6fd]'
             : isMobileMenuOpen 
-              ? 'transition-all duration-300 bg-white/40 backdrop-blur-xl'
+              ? 'transition-all duration-300 bg-[#e0f2fe]/80 backdrop-blur-xl'
               : 'bg-transparent'
           }
         `}

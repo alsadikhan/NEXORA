@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Header from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Toaster } from "sonner";
+import { MotionConfig } from "framer-motion";
 
 export default function MainLayoutClient({
   children,
@@ -40,25 +41,32 @@ export default function MainLayoutClient({
   // For admin pages, just render the children without the main layout wrapper
   if (isAdminPage) {
     return (
-      <>
+      <MotionConfig reducedMotion="user">
         <Toaster position="top-right" richColors closeButton />
-        {children}
-      </>
+        <div key={pathname} className="page-enter">
+          {children}
+        </div>
+      </MotionConfig>
     );
   }
   
   return (
-    <div className="flex min-h-screen flex-col">
-      <Toaster position="top-right" richColors closeButton />
-      {shouldShowHeaderFooter && (
-        <Header />
-      )}
-      <main className={`flex-grow ${shouldApplyHeaderPadding ? 'pt-16 sm:pt-18 md:pt-20' : ''}`}>
-        {children}
-      </main>
-      {shouldShowHeaderFooter && (
-        <Footer />
-      )}
-    </div>
+    <MotionConfig reducedMotion="user">
+      <div className="flex min-h-screen flex-col">
+        <Toaster position="top-right" richColors closeButton />
+        {shouldShowHeaderFooter && (
+          <Header />
+        )}
+        <main
+          key={pathname}
+          className={`page-enter flex-grow ${shouldApplyHeaderPadding ? 'pt-16 sm:pt-18 md:pt-20' : ''}`}
+        >
+          {children}
+        </main>
+        {shouldShowHeaderFooter && (
+          <Footer />
+        )}
+      </div>
+    </MotionConfig>
   );
-} 
+}

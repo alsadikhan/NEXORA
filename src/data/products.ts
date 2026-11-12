@@ -934,6 +934,125 @@ export const dummyProducts: Product[] = [
     image: 'https://res.cloudinary.com/dfijxvhfl/image/upload/v1748817871/tshirt-6_dzfego.jpg',
     description: 'Express your personality with our unique graphic print t-shirt design.',
     tags: ['graphic', 't-shirt', 'print']
+  },
+  {
+    id: 17,
+    name: 'Signature Oud Attar',
+    price: 899,
+    rating: 4.9,
+    category: 'Atars',
+    subCategory: 'Oud',
+    link: '/products/signature-oud-attar',
+    isNew: true,
+    inStock: true,
+    hasColorOptions: false,
+    image: 'https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=600',
+    description: 'A rich, long-lasting oud fragrance in a convenient concentrated attar.',
+    tags: ['attar', 'oud', 'fragrance'],
+    sizes: ['6ml', '12ml'],
+    urlSlug: 'signature-oud-attar'
+  },
+  {
+    id: 18,
+    name: 'Classic Square Sunglasses',
+    price: 749,
+    rating: 4.7,
+    category: 'Eyewear',
+    subCategory: 'Sunglasses',
+    link: '/products/classic-square-sunglasses',
+    isNew: true,
+    inStock: true,
+    hasColorOptions: false,
+    image: 'https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=600',
+    description: 'A versatile square-frame design for everyday sun protection and style.',
+    tags: ['sunglasses', 'eyewear', 'accessories'],
+    sizes: ['One Size'],
+    urlSlug: 'classic-square-sunglasses'
+  },
+  {
+    id: 19,
+    name: 'Minimalist Analog Watch',
+    price: 1599,
+    rating: 4.8,
+    category: 'Watches',
+    subCategory: 'Analog',
+    link: '/products/minimalist-analog-watch',
+    isNew: true,
+    inStock: true,
+    hasColorOptions: false,
+    image: 'https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=600',
+    description: 'A clean, understated analog watch designed to complement everyday outfits.',
+    tags: ['watch', 'analog', 'accessories'],
+    sizes: ['One Size'],
+    urlSlug: 'minimalist-analog-watch'
+  },
+  {
+    id: 20,
+    name: 'Everyday Canvas Sneakers',
+    price: 1099,
+    rating: 4.7,
+    category: 'Footwear',
+    subCategory: 'Sneakers',
+    link: '/products/everyday-canvas-sneakers',
+    isNew: true,
+    inStock: true,
+    hasColorOptions: false,
+    image: 'https://images.pexels.com/photos/267320/pexels-photo-267320.jpeg?auto=compress&cs=tinysrgb&w=600',
+    description: 'Lightweight everyday sneakers with a versatile design for casual outfits.',
+    tags: ['sneakers', 'canvas', 'casual', 'footwear'],
+    sizes: ['40', '41', '42', '43', '44'],
+    urlSlug: 'everyday-canvas-sneakers'
+  },
+  {
+    id: 21,
+    name: 'Casual Everyday Loafers',
+    price: 1299,
+    rating: 4.6,
+    category: 'Footwear',
+    subCategory: 'Casual',
+    link: '/products/casual-everyday-loafers',
+    isNew: false,
+    inStock: true,
+    hasColorOptions: false,
+    image: 'https://images.pexels.com/photos/267320/pexels-photo-267320.jpeg?auto=compress&cs=tinysrgb&w=600',
+    description: 'Easy-to-wear casual loafers designed for comfortable everyday use.',
+    tags: ['loafers', 'casual', 'footwear'],
+    sizes: ['40', '41', '42', '43', '44'],
+    urlSlug: 'casual-everyday-loafers'
+  },
+  {
+    id: 22,
+    name: 'Everyday Crossbody Bag',
+    price: 899,
+    rating: 4.8,
+    category: 'Accessories',
+    subCategory: 'Bags',
+    link: '/products/everyday-crossbody-bag',
+    isNew: true,
+    inStock: true,
+    hasColorOptions: false,
+    image: 'https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg?auto=compress&cs=tinysrgb&w=600',
+    description: 'A compact everyday bag with room for daily essentials.',
+    tags: ['bag', 'crossbody', 'accessories'],
+    sizes: ['One Size'],
+    urlSlug: 'everyday-crossbody-bag'
+  },
+  {
+    id: 23,
+    name: 'Classic Leather Card Holder',
+    price: 399,
+    rating: 4.6,
+    category: 'Accessories',
+    subCategory: 'Wallets',
+    link: '/products/classic-leather-card-holder',
+    isNew: false,
+    inStock: true,
+    hasColorOptions: false,
+    image: 'https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg?auto=compress&cs=tinysrgb&w=600',
+    description: 'A slim card holder made for keeping everyday cards organized.',
+    tags: ['card holder', 'wallet', 'accessories'],
+    sizes: ['One Size'],
+    urlSlug: 'classic-leather-card-holder'
   }
 ];
 
@@ -982,5 +1101,17 @@ export const productCategories = [
   { 
     name: 'Accessories', 
     subcategories: ['Wallets', 'Belts', 'Bags']
+  },
+  {
+    name: 'Atars',
+    subcategories: ['Oud', 'Floral', 'Fresh']
+  },
+  {
+    name: 'Eyewear',
+    subcategories: ['Sunglasses', 'Optical']
+  },
+  {
+    name: 'Watches',
+    subcategories: ['Analog', 'Digital']
   }
-]; 
+];

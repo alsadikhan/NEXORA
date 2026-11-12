@@ -30,7 +30,7 @@ const navigation = {
 
 export function Footer() {
   return (
-    <footer className="bg-[#f4f0e7]">
+    <footer className="bg-muted">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-12 sm:py-16 lg:px-8">
         <nav className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
           {navigation.main.map((item) => (
